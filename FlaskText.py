@@ -1,3 +1,6 @@
+#download flask!
+#download waitress
+#use this to run waitress-serve --port=5000 --call FlaskText:create_app
 from flask import Flask, render_template, redirect, url_for, request
 app = Flask(__name__)
 
