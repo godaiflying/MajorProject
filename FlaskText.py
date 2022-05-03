@@ -2,8 +2,11 @@
 #download waitress
 #use this to run waitress-serve --port=5000 --call FlaskText:create_app
 #finished lesson 4 tech with tim flask tutorial
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, session
 app = Flask(__name__)
+#secret key to decrypt session data
+app.secret_key = "hat"
+
 
 @app.route('/')
 def hello_world():
@@ -15,13 +18,25 @@ def hello_world():
 def login():
     if request.method == "POST":
         user = request.form["nm"]
-        return redirect(url_for("user", usr=user))
+        #creating session for user
+        session["user"] = user
+        return redirect(url_for("user"))
     else:
+        if "user" in session:
+            return redirect(url_for("user"))
         return render_template('login.html')
-@app.route("/<usr>")
-def user(usr):
-    return f"<h1>{usr}</h1>"
+@app.route("/user")
+def user():
+    if "user" in session:
+        user = session["user"]
+        return f"<h1>{user}</h1>"
+    else:
+        return redirect(url_for("login"))
 
+@app.route("/logout")
+def logout():
+    session.pop("user")
+    return redirect(url_for("login"))
 
 #using redirect to make sure that only admins can access this url
 @app.route("/admin/")
