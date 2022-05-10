@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+.bg-dark{
+    background-color: #343a40;
+}
+.box{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    margin-left: 200px;
+    margin-right: 200px;
+    width: 300px;
+    border: 15px solid green;
+    padding: 50px;
+}
+.txt{
+    font-size: large;
+    font-weight: 100;
+    text-align: center;
+    color: white;
+}

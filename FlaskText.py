@@ -10,7 +10,7 @@ app.secret_key = "hat"
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html', content="cringe")
+    return render_template('index.html')
 
 #getting user login
 #so that the usr can be redirected to their own page
