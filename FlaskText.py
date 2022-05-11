@@ -1,5 +1,6 @@
 #download flask!
 #download waitress
+#download colorama
 #use this to run waitress-serve --port=5000 --call FlaskText:create_app
 #finished lesson 4 tech with tim flask tutorial
 from flask import Flask, render_template, redirect, url_for, request, session, flash
