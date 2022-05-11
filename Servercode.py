@@ -42,5 +42,32 @@ def listening(cs):
         else:
             msg = msg.replace(separator_token, ": ")
             
-            for client_socket in client_sockets:
+        for client_socket in client_sockets:
                 client_socket.send(msg.encode())
+
+while True:
+
+    #keep listening for new connections
+    #add connected clients to connected sockets
+    #start a new thread that listens for each message
+    #make a thread daemon beacuse it runs in the background apparently and is good !!
+    #then start the thread
+
+    client_sockets, client_address = s.accept()
+
+    print(f"[+] {client_address} connected.")
+
+    client_sockets.add(client_sockets)
+
+    t = Thread(target = listening, args=(client_sockets,))
+
+    t.daemon = True
+
+    t.start()
+
+# close server socket
+
+for cs in client_sockets:
+    cs.close()
+
+s.close()
