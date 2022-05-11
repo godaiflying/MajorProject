@@ -2,7 +2,7 @@
 #download waitress
 #use this to run waitress-serve --port=5000 --call FlaskText:create_app
 #finished lesson 4 tech with tim flask tutorial
-from flask import Flask, render_template, redirect, url_for, request, session
+from flask import Flask, render_template, redirect, url_for, request, session, flash
 app = Flask(__name__)
 #secret key to decrypt session data
 app.secret_key = "hat"
@@ -20,22 +20,30 @@ def login():
         user = request.form["nm"]
         #creating session for user
         session["user"] = user
+        flash("login successful!")
         return redirect(url_for("user"))
     else:
         if "user" in session:
+            flash("already logged in!")
             return redirect(url_for("user"))
         return render_template('login.html')
 @app.route("/user")
 def user():
     if "user" in session:
         user = session["user"]
-        return f"<h1>{user}</h1>"
+        
+        return render_template("user.html", user=user)
     else:
+        flash("You are not logged in")
         return redirect(url_for("login"))
 
 @app.route("/logout")
 def logout():
-    session.pop("user")
+
+    flash("You has been logged out", "info")
+
+    session.pop("user", None)
+
     return redirect(url_for("login"))
 
 #using redirect to make sure that only admins can access this url

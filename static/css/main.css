@@ -20,3 +20,8 @@ body {
     text-align: center;
     color: white;
 }
+
+.mainbutton{
+    color:red;
+    margin-left: 100px;
+}
