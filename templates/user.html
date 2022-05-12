@@ -19,6 +19,20 @@
 <p>Welcome, {{user}}</p>
 
 
+<form id="form" onsubmit="return false;">
+    <input type="text" id="userinput"/>
+    <input type="submit" onclick="printtext()"/>
+</form>
 
+<script>
+    function printtext(){
+        var usertext = document.getElementById("userinput").value;
+        
+        alert(usertext);
+
+        document.getElementById("userinput").value = " ";
+    }
+
+</script>
 <button type="button" class="btn btn-outline-primary logoutbutton"><a href="/logout">Logout</a></button>
 {%endblock%}
