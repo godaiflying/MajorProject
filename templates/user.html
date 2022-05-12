@@ -24,11 +24,18 @@
     <input type="submit" onclick="printtext()"/>
 </form>
 
+
+<p id="words"></p>
+
+
 <script>
+    
+    
+
     function printtext(){
         var usertext = document.getElementById("userinput").value;
         
-        alert(usertext);
+        document.getElementById("words").innerHTML = usertext;
 
         document.getElementById("userinput").value = " ";
     }
