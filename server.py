@@ -1,3 +1,4 @@
+from http import client
 from pydoc import cli
 import socket
 import select 
@@ -51,5 +52,13 @@ while True:
         if notified_socket == server_socket:
             client_socket, client_address = server_socket.accept()
             user = receive_messages(client_socket)
+            
             if user is False:
                 continue
+            
+            sockets_list.append(client_socket)
+            clients[clients] = user
+            print(f"Accepted new connection from {client_address[0]}:{client_address[1]} username: {user['data'].decode('utf-8')}")
+
+        else:
+            message = receive_messages(notified_socket)
