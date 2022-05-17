@@ -62,3 +62,10 @@ while True:
 
         else:
             message = receive_messages(notified_socket)
+
+            if message is False: 
+                print(f"Close connection from : {clients[notified_socket]['data'].encode['utf-8']}")
+                sockets_list.remove(notified_socket)
+                del clients[notified_socket]
+
+                continue
