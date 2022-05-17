@@ -1,5 +1,3 @@
-from http import client
-from pydoc import cli
 import socket
 import select 
 #using select
@@ -77,7 +75,7 @@ while True:
             
 
             #broadcast message to all people but the sender
-            for client_socket in client:
+            for client_socket in clients:
                 if client_socket != notified_socket:
                     client_socket.send(user['header']+ user['data'] + message['header'] + message['data'])
 
