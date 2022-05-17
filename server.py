@@ -21,3 +21,19 @@ sockets_list = [server_socket]
 clients= {}
 
 print(f"Listening for connections on {IP}:{PORT}...")
+
+def receive_messages(client_socket):
+    try:
+        #receving messages
+        message_header = client_socket.recv(HEADER_LENGTH)
+        if not len(message_header):
+            return False
+        #utf-8 is unicode transformation format HAHA
+        message_length = int(message_header.decode('utf-8').strip())
+
+        return {'header': message_header, 'data': client_socket.recv(message_length)}
+    except:
+
+        #if the user sends nothing or dcs
+        return False
+
