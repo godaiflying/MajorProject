@@ -62,10 +62,14 @@ while True:
 
         else:
             message = receive_messages(notified_socket)
-
+                #if client dc then there is no point checking weather they have sent messages
             if message is False: 
-                print(f"Close connection from : {clients[notified_socket]['data'].encode['utf-8']}")
+                print(f"Close connection from : {clients[notified_socket]['data'].decode['utf-8']}")
                 sockets_list.remove(notified_socket)
                 del clients[notified_socket]
 
                 continue
+
+            user = clients[notified_socket]
+                #printing the message
+            print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
