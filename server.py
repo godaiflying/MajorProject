@@ -73,3 +73,10 @@ while True:
             user = clients[notified_socket]
                 #printing the message
             print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
+
+            
+
+            #broadcast message to all people but the sender
+            for client_socket in client:
+                if client_socket != notified_socket:
+                    client_socket.send(user['header']+ user['data'] + message['header'] + message['data'])
