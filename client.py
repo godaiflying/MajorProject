@@ -20,3 +20,4 @@ username_header = f"{len(username):<{HEADER_LENGTH}}".encode('utf-8')
 
 while True:
     message = input(f"{my_username} > ")
+    
