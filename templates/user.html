@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 
-{%block title%}User{%endblock%}
+{%block title%}User
+
+
+{%endblock%}
 
 
 {%block content%}
+<script type="text/javascript">
+    var myvar = '{{user}}';
+    console.log(myvar);
 
+ </script>
 
 
 
@@ -17,6 +24,7 @@
     {%endwith%}
 
 <p>Welcome, {{user}}</p>
+
 
 <div class="chat_window">
     <div class="top_menu">
