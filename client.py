@@ -46,5 +46,18 @@ while True:
 
             print(f"{username} > {message}")
 
-    except:
+    except IOError as e:
+        #different computers use either EAGAIN or EWOULDBLOCK
+        #Check for both and if one of them errors, that is expected meaning continue.
+        # If different error code, something bad happened
+        if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
+            print(f'Reading error: {format(str(e))}')
+            sys.exit()
         
+
+        continue
+
+    except Exception as e:
+        #any other expection just exit
+        print(f"Reading error: {format(str(e))}")
+        sys.exit()
