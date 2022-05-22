@@ -28,10 +28,23 @@ while True:
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
         client_socket.send(message_header + message)
 
+    try:
         while True:
             username_header = client_socket.recv(HEADER_LENGTH)
 
             if not len(username_header):
                 print('Connection closed by server')
                 sys.exit()
+            
+            #accually getting the username
+            username_length = int(username_header.decode('utf-8'.strip()))
+            username = client_socket.recv(username_length).decode('utf-8')
+            #and message 
+            message_header = client_socket.recv(HEADER_LENGTH)
+            message_length = int(message_header.decode('utf-8').strip())
+            message = client_socket.recv(message_length).decode('utf-8')
 
+            print(f"{username} > {message}")
+
+    except:
+        
