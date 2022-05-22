@@ -3,6 +3,7 @@ import select
 import errno 
 #errno: To translate a numeric error code to an error message
 
+
 HEADER_LENGTH = 10
 
 IP = "127.0.0.1"
@@ -20,4 +21,8 @@ username_header = f"{len(username):<{HEADER_LENGTH}}".encode('utf-8')
 
 while True:
     message = input(f"{my_username} > ")
-    
+
+    if message:
+        message = message.encode('utf-8')
+        message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
+        client_socket.send(message_header + message)
