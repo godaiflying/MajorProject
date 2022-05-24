@@ -18,7 +18,7 @@ server_socket.listen()
 sockets_list = [server_socket]
 
 #list of users
-clients= {}
+clients = {}
 
 print(f"Listening for connections on {IP}:{PORT}...")
 
@@ -55,7 +55,7 @@ while True:
                 continue
             
             sockets_list.append(client_socket)
-            clients[clients] = user
+            clients[client_address] = user
             print(f"Accepted new connection from {client_address[0]}:{client_address[1]} username: {user['data'].decode('utf-8')}")
 
         else:
@@ -78,6 +78,7 @@ while True:
             for client_socket in clients:
                 if client_socket != notified_socket:
                     client_socket.send(user['header']+ user['data'] + message['header'] + message['data'])
+                    
 
     #watching socket excpetions
     for notified_socket in exception_sockets:
