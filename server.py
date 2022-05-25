@@ -68,7 +68,7 @@ while True:
 
                 continue
 
-            user = clients[notified_socket]
+            #user = clients[notified_socket]
                 #printing the message
             print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
 
