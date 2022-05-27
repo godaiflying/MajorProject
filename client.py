@@ -26,6 +26,7 @@ while True:
     if message:
         message = message.encode('utf-8')
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
+        print("message sent")
         client_socket.send(message_header + message)
 
     try:
