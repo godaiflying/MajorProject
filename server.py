@@ -55,7 +55,7 @@ while True:
                 continue
             
             sockets_list.append(client_socket)
-            clients[client_address] = user
+            clients[client_socket] = user
             print(f"Accepted new connection from {client_address[0]}:{client_address[1]} username: {user['data'].decode('utf-8')}")
 
         else:
@@ -68,7 +68,8 @@ while True:
 
                 continue
 
-            #user = clients[notified_socket]
+            user = clients[notified_socket]
+            
                 #printing the message
             print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
 

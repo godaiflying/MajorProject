@@ -19,6 +19,7 @@ client_socket.setblocking(False)
 
 username = my_username.encode('utf-8')
 username_header = f"{len(username):<{HEADER_LENGTH}}".encode('utf-8')
+client_socket.send(username_header + username)
 
 while True:
     message = input(f"{my_username} > ")
@@ -30,6 +31,7 @@ while True:
         client_socket.send(message_header + message)
 
     try:
+        #receive things
         while True:
             username_header = client_socket.recv(HEADER_LENGTH)
 
@@ -38,7 +40,7 @@ while True:
                 sys.exit()
             
             #accually getting the username
-            username_length = int(username_header.decode('utf-8'.strip()))
+            username_length = int(username_header.decode('utf-8').strip())
             username = client_socket.recv(username_length).decode('utf-8')
             #and message 
             message_header = client_socket.recv(HEADER_LENGTH)
@@ -52,13 +54,11 @@ while True:
         #Check for both and if one of them errors, that is expected meaning continue.
         # If different error code, something bad happened
         if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
-            print(f'Reading error: {format(str(e))}')
+            print('Reading error', str(e))
             sys.exit()
-        
-
         continue
 
     except Exception as e:
         #any other expection just exit
-        print(f"Reading error: {format(str(e))}")
+        print('general error', str(e))
         sys.exit()
