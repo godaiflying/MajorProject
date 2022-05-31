@@ -27,14 +27,13 @@ while True:
     if message:
         message = message.encode('utf-8')
         message_header = f"{len(message):<{HEADER_LENGTH}}".encode('utf-8')
-        print("message sent")
         client_socket.send(message_header + message)
 
     try:
         #receive things
         while True:
             username_header = client_socket.recv(HEADER_LENGTH)
-
+            print("message recieved")
             if not len(username_header):
                 print('Connection closed by server')
                 sys.exit()
@@ -46,8 +45,11 @@ while True:
             message_header = client_socket.recv(HEADER_LENGTH)
             message_length = int(message_header.decode('utf-8').strip())
             message = client_socket.recv(message_length).decode('utf-8')
-
+            
+            
             print(f"{username} > {message}")
+    
+    
 
     except IOError as e:
         #different computers use either EAGAIN or EWOULDBLOCK
@@ -62,3 +64,5 @@ while True:
         #any other expection just exit
         print('general error', str(e))
         sys.exit()
+
+    

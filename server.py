@@ -73,7 +73,6 @@ while True:
                 #printing the message
             print(f"Received message from {user['data'].decode('utf-8')}: {message['data'].decode('utf-8')}")
 
-            print(user)
 
             #broadcast message to all people but the sender
             for client_socket in clients:
