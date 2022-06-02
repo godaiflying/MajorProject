@@ -11,21 +11,21 @@
     var myvar = '{{my_username}}';
     console.log(myvar);
 
+
  </script>
 
 
+<p>Todays date is:<u label="today"></u></p>
+<input type="text" /><button type="button" id="sendbutton">Send</button>
 
-    {% with messages = get_flashed_messages() %}
-        {%if messages%}
-            {%for msg in messages %}
-                <p>{{msg}}</p>
-            {%endfor%}
-        {%endif%}
-    {%endwith%}
+<script>
+    
+    
 
-<p>Welcome, {{user}}</p>
+</script>
 
 
+<!--
 <div class="chat_window">
     <div class="top_menu">
         <div class="buttons">
@@ -54,16 +54,11 @@
         </div>
     </li>
 </div>
-
+-->
 
 
 <p id="words"></p>
 
 
-<script>
-    
-    
-
-</script>
 <button type="button" class="btn btn-outline-primary logoutbutton"><a href="/logout">Logout</a></button>
 {%endblock%}
