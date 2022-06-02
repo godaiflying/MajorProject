@@ -2,7 +2,9 @@ import socket
 import select
 import errno
 import sys
+
 #errno: To translate a numeric error code to an error message
+
 
 
 HEADER_LENGTH = 10

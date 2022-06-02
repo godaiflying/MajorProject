@@ -2,8 +2,8 @@
 #download waitress
 #download colorama
 #use this to run waitress-serve --port=5000 --call FlaskText:create_app
-#finished lesson 4 tech with tim flask tutorial
 from flask import Flask, render_template, redirect, url_for, request, session, flash
+import json
 app = Flask(__name__)
 #secret key to decrypt session data
 app.secret_key = "hat"
@@ -46,6 +46,16 @@ def logout():
     session.pop("user", None)
 
     return redirect(url_for("login"))
+
+
+@app.route('/processUserInfo/<string:userinfo>', methods=['POST'])
+def processUserInfo(userInfo):
+    userInfo = json.loads(userInfo)
+
+    print(userInfo['name'])
+    print(userInfo['message'])
+
+    return "message recived"
 
 #using redirect to make sure that only admins can access this url
 @app.route("/admin/")
