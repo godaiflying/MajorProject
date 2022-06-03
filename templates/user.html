@@ -20,18 +20,18 @@
 
 <script>
     function sendUserInfo() {
-        let userinfo = {
-            'name': '{{User}}',
-            'message': document.getElementById("message").value
-        }
-        const request = new XMLHttpRequest()
-        request.open('POST', '/processUserInfo/${JSON.stringify(userinfo)}')
-        request.onload = () => {
-            const flaskmessage = request.responseText
-            console.log(flaskmessage)
-        }
-        request.send()
-
+        // let userinfo = {
+        //     'name': '{{User}}',
+        //     'message': document.getElementById("message").value
+        // }
+        // const request = new XMLHttpRequest()
+        // request.open('POST', '/processUserInfo/${JSON.stringify(userinfo)}')
+        // request.onload = () => {
+        //     const flaskmessage = request.responseText
+        //     console.log(flaskmessage)
+        // }
+        // request.send()
+        
     }
     
 
